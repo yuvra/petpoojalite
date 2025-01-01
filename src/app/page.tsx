@@ -1,95 +1,124 @@
 import Image from "next/image";
 import styles from "./page.module.css";
+import { Button, Card, ConfigProvider, Input, Space } from "antd";
+import {
+  ClockCircleOutlined,
+  PhoneOutlined,
+  UserOutlined,
+} from "@ant-design/icons";
+// import Password from "antd/es/input/Password";
 
 export default function Home() {
+  const { Password } = Input;
   return (
     <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>src/app/page.tsx</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+      <div className={styles.header}>
+        <span style={{ fontSize: 20, fontWeight: 600, paddingLeft: 20 }}>
+          Restopay
+        </span>
+      </div>
+      <div className={styles.body} style={{ backgroundColor: "blue" }}>
+        <div className={styles.backgroundDiv}></div>
+        <div
+          style={{ minWidth: "60%", height: "100%", backgroundColor: "#FFF" }}
+        >
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              height: "100%",
+              justifyContent: "center",
+              gap: 20,
+            }}
           >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
+            <div>
+              <Input
+                size="large"
+                placeholder="Username"
+                prefix={<UserOutlined />}
+              />
+            </div>
+            <div>
+              <Input size="large" placeholder="Password" type="Password" />
+            </div>
+            <div>
+              <ConfigProvider
+                theme={{
+                  components: {
+                    Button: {
+                      /* here is your component tokens */
+                    },
+                  },
+                }}
+              >
+                <Button type="primary" style={{}}>
+                  Log In
+                </Button>
+              </ConfigProvider>
+            </div>
+          </div>
         </div>
-      </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+        <div
+          style={{
+            minWidth: "20%",
+            height: "100%",
+            backgroundColor: "#0e0d0d",
+            display: "flex",
+            justifyContent: "space-evenly",
+            alignItems: "center",
+            flexDirection: "column",
+          }}
         >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+          <Card className={styles.bodyCard}>
+            <div>
+              <UserOutlined style={{ fontSize: "300%" }} />
+            </div>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <span style={{ fontSize: 18, fontWeight: 300 }}>Login</span>
+            </div>
+          </Card>
+
+          <Card className={styles.bodyCard}>
+            <div>
+              <ClockCircleOutlined style={{ fontSize: "300%" }} />
+            </div>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <span style={{ fontSize: 18, fontWeight: 300 }}>OTP</span>
+            </div>
+          </Card>
+        </div>
+      </div>
+      <div className={styles.footer}>
+        <div
+          style={{
+            height: "100%",
+            fontSize: 16,
+            backgroundColor: "black",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-around",
+          }}
         >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+          <div>
+            Need Quick Help? <PhoneOutlined style={{ paddingLeft: 10 }} />
+            9011262635
+          </div>
+          <div>Email us at: yuvraj.mane@yahoo.com</div>
+        </div>
+      </div>
     </div>
   );
 }
