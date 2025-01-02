@@ -1,3 +1,6 @@
+"use client";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import styles from "./page.module.css";
 import { Button, Card, ConfigProvider, Input, Space } from "antd";
@@ -6,10 +9,20 @@ import {
   PhoneOutlined,
   UserOutlined,
 } from "@ant-design/icons";
-// import Password from "antd/es/input/Password";
 
 export default function Home() {
-  const { Password } = Input;
+  const router = useRouter();
+
+  const [userName, setUserName] = useState("");
+  const [passowrd, setPassword] = useState("");
+
+  const handleLogIn = () => {
+    console.log("userName", userName);
+    console.log("passowrd", passowrd);
+    if (userName !== "" && passowrd !== "") {
+      router.push("/restolayout");
+    }
+  };
   return (
     <div className={styles.page}>
       <div className={styles.header}>
@@ -29,18 +42,40 @@ export default function Home() {
               alignItems: "center",
               height: "100%",
               justifyContent: "center",
-              gap: 20,
+              gap: 45,
             }}
           >
             <div>
+              <span
+                style={{
+                  color: "black",
+                  fontFamily: "Poppins",
+                  fontWeight: 400,
+                  fontSize: 18,
+                }}
+              >
+                Restaurant Login
+              </span>
+            </div>
+            <div style={{ width: "30%" }}>
               <Input
                 size="large"
                 placeholder="Username"
                 prefix={<UserOutlined />}
+                onChange={(e) => {
+                  setUserName(e.target.value);
+                }}
               />
             </div>
-            <div>
-              <Input size="large" placeholder="Password" type="Password" />
+            <div style={{ width: "30%" }}>
+              <Input
+                size="large"
+                placeholder="Password"
+                type="Password"
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                }}
+              />
             </div>
             <div>
               <ConfigProvider
@@ -52,7 +87,13 @@ export default function Home() {
                   },
                 }}
               >
-                <Button type="primary" style={{}}>
+                <Button
+                  size="large"
+                  className={styles.buttonStyle}
+                  onClick={() => {
+                    handleLogIn();
+                  }}
+                >
                   Log In
                 </Button>
               </ConfigProvider>
@@ -70,7 +111,10 @@ export default function Home() {
             flexDirection: "column",
           }}
         >
-          <Card className={styles.bodyCard}>
+          <Card
+            className={styles.bodyCard}
+            style={{ border: "3px solid gray" }}
+          >
             <div>
               <UserOutlined style={{ fontSize: "300%" }} />
             </div>
