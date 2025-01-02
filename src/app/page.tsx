@@ -1,14 +1,13 @@
 "use client";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import Image from "next/image";
-import styles from "./page.module.css";
 import { Button, Card, ConfigProvider, Input, Space } from "antd";
 import {
   ClockCircleOutlined,
   PhoneOutlined,
   UserOutlined,
 } from "@ant-design/icons";
+import styles from "./page.module.css";
 
 export default function Home() {
   const router = useRouter();
@@ -78,25 +77,15 @@ export default function Home() {
               />
             </div>
             <div>
-              <ConfigProvider
-                theme={{
-                  components: {
-                    Button: {
-                      /* here is your component tokens */
-                    },
-                  },
+              <Button
+                size="large"
+                className={styles.buttonStyle}
+                onClick={() => {
+                  handleLogIn();
                 }}
               >
-                <Button
-                  size="large"
-                  className={styles.buttonStyle}
-                  onClick={() => {
-                    handleLogIn();
-                  }}
-                >
-                  Log In
-                </Button>
-              </ConfigProvider>
+                Log In
+              </Button>
             </div>
           </div>
         </div>
